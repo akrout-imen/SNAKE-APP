@@ -26,7 +26,7 @@ Captures d'écran : ajouter les images dans un dossier docs/ puis les référenc
 ## ✨ Fonctionnalités
 
 ### Pour les utilisateurs du laboratoire
-- **Connexion et inscription par e-mail.** Les nouveaux comptes restent en attente jusqu'à leur validation par un administrateur.
+- **Connexion simplifiée par e-mail, sans mot de passe** (voir [Choix techniques](#-choix-techniques)). Les nouveaux comptes restent en attente jusqu'à leur validation par un administrateur.
 - **Tableau de bord d'accueil** : actualités du laboratoire, mes prochaines réservations, anniversaires du jour et tableau des équipements filtrable par salle et par catégorie.
 - **Réservation sur calendrier.** On peut réserver une journée entière ou choisir des horaires par pas de 30 minutes.
 - **Contrôle automatique des conflits.** Une réservation est refusée si elle :
@@ -109,6 +109,16 @@ de l'application principale.
 
 ## 🧠 Choix techniques
 
+- **Connexion des utilisateurs par e-mail uniquement.** Nous voulions que les
+  membres du laboratoire puissent réserver un équipement en quelques secondes,
+  sans avoir à créer ni retenir de mot de passe. Ce choix est acceptable ici
+  car :
+  - l'application n'est accessible que depuis le réseau interne du laboratoire ;
+  - chaque nouveau compte doit être validé par un administrateur avant de
+    pouvoir réserver.
+
+  Seul l'espace administrateur, qui permet de tout modifier, est protégé par un
+  mot de passe.
 - **Mot de passe administrateur haché.** Il est haché en SHA-256 avant d'être
   stocké en base de données.
 - **Aucun secret dans le code.** Les identifiants SMTP et le mot de passe
