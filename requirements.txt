@@ -2,6 +2,7 @@ streamlit==1.51.0
 streamlit-calendar==1.4.0
 streamlit-modal==0.1.2
 pandas==2.3.3
+openpyxl==3.1.5
 plotly==6.5.2
 email-validator==2.3.0
 qrcode[pil]==8.2
