@@ -218,3 +218,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# SNAKE : base de donnees et sauvegardes (donnees personnelles des utilisateurs)
+*.db
+db/backups/
+
+# SNAKE : QR code genere automatiquement au lancement
+assets/qr_public_schedule.png
+assets/qr_public_schedule.json
+
+# Editeurs / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
