@@ -1,130 +1,136 @@
 # 🐍 SNAKE-APP
 
-**Web app for booking shared lab equipment, built with Python, Streamlit and SQLite.**
+**Application web de réservation d'équipements de laboratoire, développée avec Python, Streamlit et SQLite.**
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.51-FF4B4B?logo=streamlit&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?logo=plotly&logoColor=white)
 
-In a research lab, instruments are shared between many people and tracking who
-uses what, when, and how close each instrument is to its next maintenance quickly
-becomes a problem. SNAKE replaces the paper sheets and shared spreadsheets with a
-single web app: users book equipment on a calendar, admins manage equipment,
-users and permissions, and everyone sees the lab schedule in real time.
+Dans un laboratoire de recherche, les instruments sont partagés entre de
+nombreuses personnes. Il devient vite difficile de savoir qui utilise quoi, à
+quel moment, et quand chaque instrument devra passer en maintenance. SNAKE
+remplace les feuilles papier et les tableurs partagés par une application web
+unique :
+- les utilisateurs réservent les équipements sur un calendrier ;
+- les administrateurs gèrent les équipements, les utilisateurs et les droits d'accès ;
+- tout le monde voit le planning du laboratoire en temps réel.
 
 <!--
-Screenshots: add images to a docs/ folder and reference them here, e.g.
-![Home page](docs/home.png)
+Captures d'écran : ajouter les images dans un dossier docs/ puis les référencer ici, par ex.
+![Page d'accueil](docs/accueil.png)
 -->
 
 ---
 
-## ✨ Features
+## ✨ Fonctionnalités
 
-### For lab users
-- **Email-based login and sign-up.** New accounts stay pending until an admin validates them.
-- **Home dashboard** with the lab news board, my upcoming reservations, today's birthdays, and a filterable equipment table (by room and category).
-- **Calendar booking.** Users can reserve a whole day or choose a time range in 30-minute steps.
-- **Automatic conflict checks.** A booking is refused if it:
-  - overlaps an existing reservation;
-  - overlaps an all-day reservation or a scheduled maintenance;
-  - exceeds the maximum number of days allowed for that equipment.
-- **Editing and cancelling.** Users can move or cancel their own reservations.
-- **Category view.** A resource calendar shows every instrument of one category side by side.
+### Pour les utilisateurs du laboratoire
+- **Connexion et inscription par e-mail.** Les nouveaux comptes restent en attente jusqu'à leur validation par un administrateur.
+- **Tableau de bord d'accueil** : actualités du laboratoire, mes prochaines réservations, anniversaires du jour et tableau des équipements filtrable par salle et par catégorie.
+- **Réservation sur calendrier.** On peut réserver une journée entière ou choisir des horaires par pas de 30 minutes.
+- **Contrôle automatique des conflits.** Une réservation est refusée si elle :
+  - chevauche une réservation existante ;
+  - chevauche une réservation sur une journée entière ou une maintenance planifiée ;
+  - dépasse le nombre maximal de jours autorisé pour l'équipement.
+- **Modification et annulation** de ses propres réservations.
+- **Vue par catégorie.** Un calendrier affiche côte à côte tous les instruments d'une même catégorie.
 
-### For admins
-- **User management.** Admins validate new users and manage admin profiles.
-- **Per-equipment booking permissions.** Some instruments can only be booked by authorised users.
-- **Equipment management** in an editable table:
-  - rooms, people in charge and maintenance dates;
-  - usage quotas, with an automatic "maintenance needed" flag when the quota is exceeded;
-  - **Excel import / export**.
-- **Projects and news board** for lab-wide communication.
-- **Usage statistics** per instrument and per period, shown as interactive Plotly charts.
-- **Full history** of reservations and cancellations.
-- **Email notifications** over SMTP:
-  - admins are notified when someone signs up;
-  - users are notified when their account is validated.
+### Pour les administrateurs
+- **Gestion des utilisateurs.** Validation des nouveaux comptes et gestion des profils administrateurs.
+- **Droits de réservation par équipement.** Certains instruments ne peuvent être réservés que par les utilisateurs autorisés.
+- **Gestion des équipements** dans un tableau éditable :
+  - salles, responsables et dates de maintenance ;
+  - quotas d'utilisation, avec signalement automatique « maintenance nécessaire » quand un quota est dépassé ;
+  - **import / export Excel**.
+- **Gestion des projets et tableau d'annonces** pour communiquer avec tout le laboratoire.
+- **Statistiques d'utilisation** par instrument et par période, avec des graphiques Plotly interactifs.
+- **Historique complet** des réservations et des annulations.
+- **Notifications par e-mail** via SMTP :
+  - les administrateurs sont prévenus de chaque nouvelle inscription ;
+  - les utilisateurs sont prévenus quand leur compte est validé.
 
-### Public schedule
-- A separate, **read-only, mobile-first page** (`public_schedule.py`) shows the
-  equipment schedule without any login, and can be opened from a **QR code**
-  displayed in the lab.
+### Planning public
+- **Une page séparée, en lecture seule et conçue pour mobile** (`public_schedule.py`).
+  Elle affiche le planning des équipements sans connexion et s'ouvre en scannant
+  un **QR code** affiché dans le laboratoire.
 
 ---
 
-## 🛠️ Tech stack
+## 🛠️ Technologies
 
-| Layer | Tools |
+| Domaine | Outils |
 |---|---|
-| Language | Python 3.13 |
-| Web framework | Streamlit (multi-page app) |
-| Calendar UI | streamlit-calendar (FullCalendar) |
-| Database | SQLite |
-| Data & charts | pandas, Plotly |
-| Other | smtplib (email), email-validator, openpyxl (Excel), qrcode |
+| Langage | Python 3.13 |
+| Framework web | Streamlit (application multi-pages) |
+| Calendrier | streamlit-calendar (FullCalendar) |
+| Base de données | SQLite |
+| Données et graphiques | pandas, Plotly |
+| Autres | smtplib (e-mails), email-validator, openpyxl (Excel), qrcode |
 
 ---
 
-## 🧠 Technical choices
+## 🧠 Choix techniques
 
-- **Hashed admin password.** The admin password is hashed with SHA-256 before
-  being stored in the database.
-- **Secrets kept out of the code.** SMTP credentials and the initial admin
-  password live in `.streamlit/secrets.toml`, which git ignores.
-- **Read-only public page.** `public_schedule.py` opens SQLite in `mode=ro`, so
-  the public page cannot write to the database, even if it has a bug. It also
-  hides project names and free-text comments.
-- **Non-blocking email.** The notification functions never raise an exception.
-  If SMTP is not configured or fails, sign-up and validation still work.
-- **Automatic backups.** The database is copied to `db/backups/` once a day, and
-  only the 30 most recent copies are kept.
-- **Schema migrations.** `init_db()` creates any missing tables and adds any new
-  columns when the app starts, so existing databases are updated automatically.
+- **Mot de passe administrateur haché.** Il est haché en SHA-256 avant d'être
+  stocké en base de données.
+- **Aucun secret dans le code.** Les identifiants SMTP et le mot de passe
+  administrateur initial sont dans `.streamlit/secrets.toml`, un fichier
+  exclu du dépôt git.
+- **Page publique en lecture seule.** `public_schedule.py` ouvre SQLite en
+  mode `ro` (read-only) : la page ne peut pas modifier la base, même en cas de
+  bug. Elle masque aussi les noms de projets et les commentaires libres.
+- **E-mails non bloquants.** Les fonctions d'envoi ne lèvent jamais
+  d'exception. Si le SMTP est absent ou en panne, l'inscription et la
+  validation des comptes continuent de fonctionner.
+- **Sauvegardes automatiques.** La base est copiée dans `db/backups/` une fois
+  par jour, et seules les 30 copies les plus récentes sont conservées.
+- **Migrations du schéma.** Au lancement de l'application, `init_db()` crée
+  les tables manquantes et ajoute les nouvelles colonnes : une base existante
+  est mise à jour automatiquement.
 
 ---
 
-## 📁 Project structure
+## 📁 Structure du projet
 
 ```
-├── app.py                      # Home page: login, sign-up, dashboard
+├── app.py                      # Accueil : connexion, inscription, tableau de bord
 ├── Pages/
-│   ├── 1_Reservation-Annulation.py   # Booking, editing and cancelling
-│   ├── 2_Category_View.py            # Resource calendar by category
-│   └── 3_Admin.py                    # Admin dashboard
-├── public_schedule.py          # Public read-only schedule (mobile)
-├── db/database.py              # Database schema and migrations
-├── email_utils.py              # SMTP notifications
-├── utils.py                    # QR code generation for the public page
+│   ├── 1_Reservation-Annulation.py   # Réservation, modification, annulation
+│   ├── 2_Category_View.py            # Calendrier par catégorie d'équipements
+│   └── 3_Admin.py                    # Espace administrateur
+├── public_schedule.py          # Planning public en lecture seule (mobile)
+├── db/database.py              # Schéma de la base et migrations
+├── email_utils.py              # Notifications par e-mail (SMTP)
+├── utils.py                    # Génération du QR code de la page publique
 ├── .streamlit/secrets.toml.example
 └── requirements.txt
 ```
 
 ---
 
-## 🚀 Getting started
+## 🚀 Installation
 
 ```bash
-# 1. Clone the repository
+# 1. Cloner le dépôt
 git clone https://github.com/akroutimen1-ui/SNAKE-APP.git
 cd SNAKE-APP
 
-# 2. Install dependencies (a virtual environment is recommended)
+# 2. Installer les dépendances (de préférence dans un environnement virtuel)
 pip install -r requirements.txt
 
-# 3. Configure secrets
+# 3. Configurer les secrets
 cp .streamlit/secrets.toml.example .streamlit/secrets.toml
-#    then edit .streamlit/secrets.toml: set the admin password
-#    (the email section is optional)
+#    puis éditer .streamlit/secrets.toml : définir le mot de passe administrateur
+#    (la section e-mail est facultative)
 
-# 4. Run the app
+# 4. Lancer l'application
 streamlit run app.py
 ```
 
-The SQLite database (`db/lab.db`) is created automatically on first launch.
+La base de données SQLite (`db/lab.db`) est créée automatiquement au premier lancement.
 
-To run the public schedule page as well:
+Pour lancer aussi la page de planning public :
 
 ```bash
 streamlit run public_schedule.py --server.port 8502
@@ -132,6 +138,6 @@ streamlit run public_schedule.py --server.port 8502
 
 ---
 
-## 👤 Author
+## 👤 Auteur
 
-**akroutimen1-ui** · [GitHub profile](https://github.com/akroutimen1-ui)
+**akroutimen1-ui** · [Profil GitHub](https://github.com/akroutimen1-ui)
