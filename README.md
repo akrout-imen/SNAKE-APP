@@ -38,7 +38,7 @@ Captures d'écran : ajouter les images dans un dossier docs/ puis les référenc
 
 ### Pour les administrateurs
 - **Gestion des utilisateurs.** Validation des nouveaux comptes et gestion des profils administrateurs.
-- **Droits de réservation par équipement.** Certains instruments ne peuvent être réservés que par les utilisateurs autorisés.
+- **Droits de réservation par équipement.** Certains instruments ne peuvent être réservés que par les utilisateurs que l'administrateur a autorisés, c'est-à-dire ceux qui ont été formés à leur utilisation.
 - **Gestion des équipements** dans un tableau éditable :
   - salles, responsables et dates de maintenance ;
   - quotas d'utilisation, avec signalement automatique « maintenance nécessaire » quand un quota est dépassé ;
@@ -111,11 +111,16 @@ de l'application principale.
 
 - **Connexion des utilisateurs par e-mail uniquement.** Nous voulions que les
   membres du laboratoire puissent réserver un équipement en quelques secondes,
-  sans avoir à créer ni retenir de mot de passe. Ce choix est acceptable ici
-  car :
+  sans avoir à créer ni retenir de mot de passe. Ce choix est adapté au
+  contexte :
+  - le laboratoire est une petite équipe où tout le monde se fait confiance ;
   - l'application n'est accessible que depuis le réseau interne du laboratoire ;
   - chaque nouveau compte doit être validé par un administrateur avant de
-    pouvoir réserver.
+    pouvoir réserver ;
+  - pour les instruments sensibles, l'administrateur n'accorde le droit de
+    réserver qu'aux personnes formées à leur utilisation ;
+  - toutes les réservations et annulations sont enregistrées dans un
+    historique : en cas de problème, l'origine est facile à identifier.
 
   Seul l'espace administrateur, qui permet de tout modifier, est protégé par un
   mot de passe.
