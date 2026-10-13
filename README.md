@@ -53,7 +53,43 @@ Captures d'écran : ajouter les images dans un dossier docs/ puis les référenc
 ### Planning public
 - **Une page séparée, en lecture seule et conçue pour mobile** (`public_schedule.py`).
   Elle affiche le planning des équipements sans connexion et s'ouvre en scannant
-  un **QR code** affiché dans le laboratoire.
+  un **QR code** affiché dans les salles de manipulation (voir
+  [Déploiement](#-déploiement)).
+
+---
+
+## 🌐 Déploiement
+
+**L'application principale est hébergée sur le réseau interne du laboratoire.**
+Elle n'est pas publiée sur internet : les données du laboratoire (utilisateurs,
+réservations, projets) ne sortent pas du réseau.
+
+**Le problème :** dans les salles de manipulation, il est impossible de se
+connecter au réseau interne avec un téléphone. Les utilisateurs ne pouvaient
+donc pas consulter le planning depuis l'endroit où ils en ont le plus besoin.
+
+**La solution :** une page dédiée, `public_schedule.py`, qui tourne séparément
+de l'application principale.
+- Elle est accessible depuis un téléphone grâce à un **tunnel Tailscale**.
+- On l'ouvre en scannant le **QR code** affiché dans les salles.
+- Elle ne fait qu'afficher le planning : elle n'a ni connexion, ni réservation,
+  ni accès en écriture à la base.
+- Elle ne montre que le strict nécessaire : l'équipement, le créneau et
+  l'utilisateur.
+
+```
+ Réseau interne du laboratoire                    Salles de manipulation
+┌────────────────────────────────────┐
+│ app.py + Pages/  (port 8501)       │
+│   lecture / écriture               │
+│               │                    │
+│               ▼                    │
+│          db/lab.db                 │
+│               ▲                    │
+│               │ lecture seule      │  tunnel     📱 Téléphone
+│ public_schedule.py  (port 8502) ───┼─Tailscale──► (QR code)
+└────────────────────────────────────┘
+```
 
 ---
 
@@ -66,6 +102,7 @@ Captures d'écran : ajouter les images dans un dossier docs/ puis les référenc
 | Calendrier | streamlit-calendar (FullCalendar) |
 | Base de données | SQLite |
 | Données et graphiques | pandas, Plotly |
+| Accès mobile | Tailscale (tunnel vers la page de planning public) |
 | Autres | smtplib (e-mails), email-validator, openpyxl (Excel), qrcode |
 
 ---
