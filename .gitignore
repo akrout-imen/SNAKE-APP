@@ -223,7 +223,7 @@ __marimo__/
 *.db
 db/backups/
 
-# SNAKE : QR code genere automatiquement au lancement
+# SNAKE : QR code genere par utils.py (contient l'URL de la page publique)
 assets/qr_public_schedule.png
 assets/qr_public_schedule.json
 

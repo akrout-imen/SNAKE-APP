@@ -5,8 +5,9 @@ from datetime import datetime, timedelta
 from streamlit_calendar import calendar as st_calendar
 
 # =============================================================================
-# PAGE PUBLIQUE, LECTURE SEULE — pensée pour être exposée sur internet
-# (via un tunnel type Cloudflare Tunnel) séparément de l'application interne.
+# PAGE PUBLIQUE, LECTURE SEULE — pensée pour être consultée depuis un téléphone
+# (via un tunnel Tailscale) séparément de l'application interne, qui reste
+# sur le réseau du laboratoire.
 #
 # Différences volontaires avec pages/2_Category_View.py :
 #   - Aucune authentification, aucune donnée de session utilisateur.

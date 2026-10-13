@@ -1,18 +1,28 @@
 import qrcode
 import os
 import json
+import tomllib
 
-    
+
 
 # =============================================================================
 # QR code de la page publique (public_schedule.py)
 # -----------------------------------------------------------------------------
-# Coller la nouvelle valeur de L'url dans
-# PUBLIC_SCHEDULE_URL ci-dessous (ou la passer en argument) : le QR code sera
-# regenere automatiquement au prochain appel. Tant que l'URL est identique,
-# la fonction ne reecrit rien.
+# L'URL Tailscale de la page publique est lue dans .streamlit/secrets.toml
+# (section [public_schedule], cle "url") pour ne pas apparaitre dans le code
+# publie. On peut aussi la passer en argument. Le QR code est regenere
+# automatiquement au prochain appel si l'URL a change ; sinon rien n'est reecrit.
 # =============================================================================
-PUBLIC_SCHEDULE_URL = "https://enforcement-art-badge-announces.trycloudflare.com/"
+SECRETS_PATH = ".streamlit/secrets.toml"
+
+
+def read_public_schedule_url(secrets_path=SECRETS_PATH):
+    """Renvoie l'URL de la page publique lue dans secrets.toml, ou None."""
+    try:
+        with open(secrets_path, "rb") as f:
+            return tomllib.load(f).get("public_schedule", {}).get("url") or None
+    except (OSError, tomllib.TOMLDecodeError):
+        return None
 
 
 def generate_public_schedule_qr(url=None, out_path="assets/qr_public_schedule.png"):
@@ -26,7 +36,7 @@ def generate_public_schedule_qr(url=None, out_path="assets/qr_public_schedule.pn
     Parametres
     ----------
     url : str | None
-        URL a encoder. Si None, utilise PUBLIC_SCHEDULE_URL.
+        URL a encoder. Si None, utilise l'URL de secrets.toml.
     out_path : str
         Chemin du PNG a ecrire.
 
@@ -34,7 +44,13 @@ def generate_public_schedule_qr(url=None, out_path="assets/qr_public_schedule.pn
     --------
     (str, bool) : (chemin du PNG, True si (re)genere / False si deja a jour)
     """
-    url = (url or PUBLIC_SCHEDULE_URL).strip()
+    url = url or read_public_schedule_url()
+    if not url:
+        raise ValueError(
+            "URL de la page publique introuvable : renseigner [public_schedule] url "
+            "dans .streamlit/secrets.toml ou la passer en argument."
+        )
+    url = url.strip()
     record_path = os.path.splitext(out_path)[0] + ".json"
 
     last_url = None
