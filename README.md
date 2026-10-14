@@ -21,14 +21,8 @@ unique :
 ## 🤝 Contexte et méthode de travail
 
 **Un projet conçu avec le laboratoire BBF (Marseille).** L'application a été
-conçue avec le laboratoire BBF, à partir de ses besoins réels :
-- gestion d'instruments partagés ;
-- suivi des maintenances ;
-- droits de réservation réservés aux utilisateurs formés ;
-- accès au planning depuis les salles de manipulation.
-
-Les fonctionnalités ont été définies et ajustées au fil des retours des
-utilisateurs du laboratoire.
+conçue à partir des besoins réels du laboratoire, et ses fonctionnalités ont
+été ajustées au fil des retours de ses utilisateurs.
 
 **Un travail personnel, réalisé avec l'aide d'une IA.** J'ai développé ce
 projet avec l'assistance de Claude (Anthropic), utilisé comme outil d'aide au
