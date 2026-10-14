@@ -18,6 +18,31 @@ unique :
 
 ---
 
+## 🤝 Contexte et méthode de travail
+
+**Un projet conçu avec le laboratoire BBF (Marseille).** L'application a été
+conçue avec le laboratoire BBF, à partir de ses besoins réels :
+- gestion d'instruments partagés ;
+- suivi des maintenances ;
+- droits de réservation réservés aux utilisateurs formés ;
+- accès au planning depuis les salles de manipulation.
+
+Les fonctionnalités ont été définies et ajustées au fil des retours des
+utilisateurs du laboratoire.
+
+**Un travail personnel, réalisé avec l'aide d'une IA.** J'ai développé ce
+projet avec l'assistance de Claude (Anthropic), utilisé comme outil d'aide au
+développement. Cela reste un travail personnel, pas un produit généré par
+l'IA :
+- **mes décisions :** l'analyse des besoins, la conception de l'application,
+  les choix fonctionnels et techniques, et les tests en conditions réelles ;
+- **certaines parties du code issues de l'IA :** elles ont été relues,
+  comprises, vérifiées et adaptées par mes soins avant d'être intégrées ;
+- **la relecture :** l'IA m'a aussi aidée à repérer d'éventuelles erreurs dans
+  mon propre code, que j'ai ensuite corrigées.
+
+---
+
 ## 📸 Aperçu
 
 > Les captures ci-dessous utilisent une base de **données fictives** : aucune
@@ -209,31 +234,6 @@ Pour lancer aussi la page de planning public :
 ```bash
 streamlit run public_schedule.py --server.port 8502
 ```
-
----
-
-## 🤝 Contexte et méthode de travail
-
-**Un projet conçu avec le laboratoire BBF (Marseille).** L'application a été
-conçue avec le laboratoire BBF, à partir de ses besoins réels :
-- gestion d'instruments partagés ;
-- suivi des maintenances ;
-- droits de réservation réservés aux utilisateurs formés ;
-- accès au planning depuis les salles de manipulation.
-
-Les fonctionnalités ont été définies et ajustées au fil des retours des
-utilisateurs du laboratoire.
-
-**Un travail personnel, réalisé avec l'aide d'une IA.** J'ai développé ce
-projet avec l'assistance de Claude (Anthropic), utilisé comme outil d'aide au
-développement. Cela reste un travail personnel, pas un produit généré par
-l'IA :
-- **mes décisions :** l'analyse des besoins, la conception de l'application,
-  les choix fonctionnels et techniques, et les tests en conditions réelles ;
-- **certaines parties du code issues de l'IA :** elles ont été relues,
-  comprises, vérifiées et adaptées par mes soins avant d'être intégrées ;
-- **la relecture :** l'IA m'a aussi aidée à repérer d'éventuelles erreurs dans
-  mon propre code, que j'ai ensuite corrigées.
 
 ---
 
