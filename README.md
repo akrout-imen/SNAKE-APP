@@ -16,10 +16,32 @@ unique :
 - les administrateurs gèrent les équipements, les utilisateurs et les droits d'accès ;
 - tout le monde voit le planning du laboratoire en temps réel.
 
-<!--
-Captures d'écran : ajouter les images dans un dossier docs/ puis les référencer ici, par ex.
-![Page d'accueil](docs/accueil.png)
--->
+---
+
+## 📸 Aperçu
+
+> Les captures ci-dessous utilisent une base de **données fictives** : aucune
+> donnée réelle du laboratoire n'est publiée.
+
+**Page d'accueil** : actualités du laboratoire et prochaines réservations de l'utilisateur.
+
+![Page d'accueil](docs/screenshots/accueil.png)
+
+**Réservation** : planning d'un équipement, avec choix de la salle, de la catégorie et de l'instrument.
+
+![Calendrier de réservation](docs/screenshots/reservation.png)
+
+**Vue par catégorie** : tous les instruments d'une catégorie sur le même calendrier.
+
+![Vue par catégorie](docs/screenshots/vue-categorie.png)
+
+**Espace administrateur** : tableau éditable des équipements, avec alerte quand un quota de maintenance est dépassé.
+
+![Gestion des équipements](docs/screenshots/admin-equipements.png)
+
+**Statistiques** : répartition des heures de réservation par personne et par projet.
+
+![Statistiques des réservations](docs/screenshots/admin-statistiques.png)
 
 ---
 
