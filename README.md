@@ -212,6 +212,30 @@ streamlit run public_schedule.py --server.port 8502
 
 ---
 
+## 🤝 Contexte et méthode de travail
+
+**Un projet conçu avec le laboratoire BBF (Marseille).** L'application a été
+conçue avec le laboratoire BBF, à partir de ses besoins réels :
+- gestion d'instruments partagés ;
+- suivi des maintenances ;
+- droits de réservation réservés aux utilisateurs formés ;
+- accès au planning depuis les salles de manipulation.
+
+Les fonctionnalités ont été définies et ajustées au fil des retours des
+utilisateurs du laboratoire.
+
+**Un travail personnel, réalisé avec l'aide d'une IA.** J'ai développé ce
+projet avec l'assistance de Claude (Anthropic), utilisé comme outil d'aide au
+développement. Cela reste un travail personnel, pas un produit généré par
+l'IA :
+- **mes décisions :** l'analyse des besoins, la conception de l'application,
+  les choix fonctionnels et techniques, et les tests en conditions réelles ;
+- **le code issu de l'IA :** certaines parties ont été générées par l'IA, puis
+  relues, comprises, vérifiées et adaptées par mes soins avant d'être
+  intégrées.
+
+---
+
 ## 📄 Utilisation du code
 
 © 2026 Imen Akrout – Tous droits réservés.
