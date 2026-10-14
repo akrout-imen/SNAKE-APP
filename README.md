@@ -230,9 +230,10 @@ développement. Cela reste un travail personnel, pas un produit généré par
 l'IA :
 - **mes décisions :** l'analyse des besoins, la conception de l'application,
   les choix fonctionnels et techniques, et les tests en conditions réelles ;
-- **le code issu de l'IA :** certaines parties ont été générées par l'IA, puis
-  relues, comprises, vérifiées et adaptées par mes soins avant d'être
-  intégrées.
+- **certaines parties du code issues de l'IA :** elles ont été relues,
+  comprises, vérifiées et adaptées par mes soins avant d'être intégrées ;
+- **la relecture :** l'IA m'a aussi aidée à repérer d'éventuelles erreurs dans
+  mon propre code, que j'ai ensuite corrigées.
 
 ---
 
