@@ -192,4 +192,4 @@ streamlit run public_schedule.py --server.port 8502
 
 ## 👤 Auteur
 
-**akroutimen1-ui** · [Profil GitHub](https://github.com/akroutimen1-ui)
+**Imen Akrout** · [Profil GitHub](https://github.com/akroutimen1-ui)
