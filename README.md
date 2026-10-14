@@ -212,6 +212,16 @@ streamlit run public_schedule.py --server.port 8502
 
 ---
 
+## 📄 Utilisation du code
+
+© 2026 Imen Akrout – Tous droits réservés.
+
+Ce code peut être consulté et testé dans le cadre de l'évaluation de mon
+travail. Toute réutilisation, copie ou diffusion est interdite sans mon
+autorisation.
+
+---
+
 ## 👤 Auteur
 
 **Imen Akrout**
