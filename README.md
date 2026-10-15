@@ -206,7 +206,7 @@ de l'application principale.
 
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/akroutimen1-ui/SNAKE-APP.git
+git clone https://github.com/akrout-imen/SNAKE-APP.git
 cd SNAKE-APP
 
 # 2. Installer les dépendances (de préférence dans un environnement virtuel)
