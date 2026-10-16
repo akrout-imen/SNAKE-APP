@@ -167,9 +167,6 @@ de l'application principale.
   mot de passe.
 - **Mot de passe administrateur haché.** Il est haché en SHA-256 avant d'être
   stocké en base de données.
-- **Aucun secret dans le code.** Les identifiants SMTP et le mot de passe
-  administrateur initial sont dans `.streamlit/secrets.toml`, un fichier
-  exclu du dépôt git.
 - **Page publique en lecture seule.** `public_schedule.py` ouvre SQLite en
   mode `ro` (read-only) : la page ne peut pas modifier la base, même en cas de
   bug. Elle masque aussi les noms de projets et les commentaires libres.
